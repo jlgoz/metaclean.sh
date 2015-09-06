@@ -8,7 +8,15 @@
 # i.e Ubuntu/Debian generally most people save to home dir/Pictures
 #
 # if you have not done so already before using this script you need to run:
-# sudo apt-get install mogrify
+# sudo apt-get install imagemagick
+
+# check that the $HOME/Pictures directory exists
+if [ ! -d $HOME/Pictures ]; then
+	printf "$0: cannot find pictures directory\n"
+	exit 42
+done
+
+# now strip the EXIF
 mogrify -strip $HOME/Pictures/*.jpg
 mogrify -strip $HOME/Pictures/*.jpeg
 mogrify -strip $HOME/Pictures/*.png
